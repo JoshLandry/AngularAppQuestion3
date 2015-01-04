@@ -1,0 +1,47 @@
+<div ng-controller="UserCreate">
+  	<h1>{{name}}</h1>
+
+
+First Name <input id="firstName" ng-model="firstName"></input> <br>
+Last Name <input id="lastName" ng-model="lastName"></input> <br>
+Email Address <input id="email" ng-model="emailAddress"></input> <br>
+
+Submit New User <button> </button>
+
+	<div id=currentBox>
+
+	<p id="currentEntry"> Name: {{firstName}} {{lastName}} <br>
+	Email Address: {{emailAddress}} </p>
+
+	</div>
+
+</div>
+
+<script>
+var validateEmail = function(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+} 
+
+$('button').on('click', function() {
+	var currentEmail = $('#email').val();
+	var currentFirstName = $('#firstName').val();
+	var currentLastName = $('#lastName').val();
+	var entry = "<li>" + currentLastName + ", " + currentFirstName + "  ...  " + currentEmail + "</li>";
+
+	if(currentFirstName) {
+
+		if(validateEmail(currentEmail)) {
+			$('#Users').append(entry);
+			
+		} else {
+			alert("Oops, looks like that's not a real email address.");
+		}
+
+	} else {
+		alert("The first name field is required.");
+	}
+
+
+});
+</script>
